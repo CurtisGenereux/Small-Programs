@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Graph Generator</title>
+  </head>
+  <body>
+
+    <div id="container" style="width:100%; height:800px;"></div>
+
+  <script>
+
+
+var nvidia = [];
+
+function getRandomNum(min, max) {
+    return (Math.random() * (max - min + 1) + min)
+  }
+
+  var year = 2000;
+  var stockPrice = getRandomNum(7, 50);
+
+  while (year <= 2500) {
+
+    var stockPriceLow = getRandomNum(stockPrice * .9, stockPrice * 1);
+    var stockPriceHigh = getRandomNum(stockPrice * 1.1, stockPrice * 1.23);
+
+    var PriceChancePicker = getRandomNum(1, 10);
+
+    if (PriceChancePicker >= 8) {
+      stockPrice = getRandomNum(stockPrice, stockPriceHigh);
+
+    } else {
+
+      stockPrice = getRandomNum(stockPriceLow, stockPrice);
+
+    }
+
+    nvidia[year-2000] = stockPrice;
+
+    year++;
+
+  }
+
+  var names = []
+
+names[0] = "Nvidia";
+names[1] = "Amazon";
+names[2] = "Facebook";
+names[3] = "Google";
+names[4] = "Intel";
+names[5] = "Uber";
+names[6] = "Lyft";
+names[7] = "Netflix"
+names[8] = "Stripe";
+names[9] = "Apple";
+names[10] = "Tesla";
+names[11] = "Visa";
+names[12] = "Adobe";
+names[13] = "Cisco";
+names[14] = "DroBox";
+names[15] = "Coinbase";
+names[16] = "Activision";
+names[17] = "Paypal";
+names[18] = "Alphabet";
+names[19] = "Microsoft";
+
+function getRandomNum2(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+
+}
+var randomNum1 = getRandomNum2(1, 20);
+var randomNum2 = getRandomNum2(1, 20);
+
+while (randomNum1 == randomNum2) {
+    var randomNum2 = getRandomNum2(1, 20);
+
+}
+
+companyName = (combine(names[randomNum1 - 1], names[randomNum2 - 1]));
+
+function right(str, chr) {
+    return str.slice(str.length - chr, str.length);
+}
+
+function left(str, chr) {
+    return str.slice(0, chr - str.length);
+}
+
+function combine(str1, str2) {
+
+    var leftside = left(str1, str1.length/2);
+    var rightside = right(str2, str2.length/2);
+
+    return leftside + rightside;
+
+}
+
+var counter = 0;
+
+Highcharts.chart('container', {
+
+    title: {
+        text: ('Stock Graph Generator For   ' + (companyName))
+    },
+
+    subtitle: {
+        text: 'By Curtis'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Stock Price'
+        }
+    },
+
+    xAxis: {
+        accessibility: {
+            rangeDescription: '40 Year growth of: ' + companyName
+        }
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            marker: {
+                enabled: false
+            },
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2000
+        }
+    },
+    
+    series: [{
+        name: companyName,
+        data: nvidia
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+
+  </script>
+  </body>
+</html>
+
