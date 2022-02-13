@@ -1,0 +1,29 @@
+#-----------MULTIPLICATION TABLE------------------------------------------------
+
+#-----------INPUT---------------------------------------------------------------
+
+number_1 = int(input(""))
+number_2 = int(input(""))
+factor_1 = int(input(""))
+factor_2 = int(input(""))
+
+answer = ""
+
+#-----------PROCESS AND OUTPUT------------------------------------------------
+
+print(end="   ")
+for current_number in range(factor_1, factor_2 + 1):
+    answer = answer + "{:>5d}".format(current_number)
+print(answer)
+
+variable = 0
+
+for current_number in range(number_1, number_2 + 1):
+    row = "{:>2d}".format(current_number) + ":"
+    for current_factor in range(factor_1, factor_2 + 1):
+        product = current_number * current_factor
+        row = row + "{:>5d}".format(product)
+    variable = variable + 1
+    if variable == 1:
+        print("-"*len(row))
+    print(row)
