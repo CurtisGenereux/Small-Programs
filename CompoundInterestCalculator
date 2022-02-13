@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator</title>
+  </head>
+  <body>
+    <h1>Compound Interest Calculator</h1>
+    <form>
+
+    <label for="startingAmountID">Starting Amount:</label>
+    <input type="text" id="startingAmountID" name="startingAmount"><br><br>
+
+    <label for="rateOfReturnID">Rate of Return:</label>
+    <input type="text" id="rateOfReturnID" name="rateOfReturn"><br><br>
+
+    <label for="numberOfYearsID">Number of Years:</label>
+    <input type="text" id="numberOfYearsID" name="numberOfYears"><br><br>
+
+    <label for="monthlyContributionID">Monthly Contribution:</label>
+    <input type="text" id="monthlyContributionID" name="monthlyContribution"><br><br>
+
+    <input type="button" value="Calculate" onclick = "calc()">
+    
+    </form>
+
+  <script>
+
+    function calc() {
+     
+    var startingAmount = parseFloat(document.getElementById("startingAmountID").value);
+    var rateOfReturn =  parseFloat(document.getElementById("rateOfReturnID").value);
+    var numberOfYears =  parseFloat(document.getElementById("numberOfYearsID").value);
+    var monthlyContribution =  parseFloat(document.getElementById("monthlyContributionID").value);
+    
+    var currentAmount = 0;  
+    var years = 0;
+
+    document.write("<p>" + "Year 0:" + " $" + (new Intl.NumberFormat().format(startingAmount)));
+    
+    while (numberOfYears >= years + 1) {
+        years++;
+
+        currentAmount = startingAmount * ((rateOfReturn/100)+1) + (monthlyContribution*12) * ((rateOfReturn/100)+1);
+        startingAmount = currentAmount;
+        document.write("<p>" + "Year " + (years) + ":" + " $" + (new Intl.NumberFormat().format(currentAmount)));
+
+      }
+
+    }
+
+  </script>
+  </body>
+</html>
