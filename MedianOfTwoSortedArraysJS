@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="img/netflixLogo.jpg"/>
+    <title>Median Of Two Sorted Arrays</title>
+</head>
+<body>
+</body>
+<script>
+
+var median = 0;
+var sumA = 0;
+var sumB = 0;
+var a = [1, 3, 6];
+var b = [2, 4, 9];
+var c = [];
+
+for (var i = 0; i < a.length; i++) {
+    c[i] = a[i];
+}
+
+var tempVarCLength = c.length;
+
+for (var i = tempVarCLength; i < (b.length+a.length); i++) {
+    c[i] = b[i-a.length];
+}
+
+document.write("<p> Unsorted Array: " + c);
+
+function swap(a, b) {
+
+    var tempVar = c[i];
+    c[i] = c[i+1];
+    c[i+1] = tempVar;
+
+}
+
+for (var j = 0; j < c.length - 1; j++) {
+    for (var i = 0; i < c.length; i++) {
+        if (c[i] > c[i+1]) {
+            swap(c[i], c[i+1]);
+
+        }
+    }
+}
+
+document.write("<p> Sorted Array: " + c);
+
+if (c.length % 2 == 0) {
+    var i = (c.length/2) - 1;
+    var middleNumOne = c[i];
+    var j = i+1;
+    var middleNumTwo = c[j];
+    median = (middleNumOne + middleNumTwo)/2;
+
+} else {
+    var k = Math.floor(c.length/2)
+    var middleNum = c[k];
+    median = middleNum;
+
+}
+
+document.write("<p> Median: " + median);
+
+</script>
+</html>
