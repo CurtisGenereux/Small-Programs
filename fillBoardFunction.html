@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill Board Function</title>
+</head>
+<script>
+
+function createPiece (x, y, type, color) {
+    console.log("Piece INFO: " + "[" + x + "," + y + "] " + color + " " + type);
+}
+
+var startingFen = "rnbqkbnr/pppppppp/////PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+
+function fillBoard(fen) { 
+
+    var x = 0, y = 0;
+    var type = "";
+    var color = "";
+
+    for (var i = 0; i < fen.length; i++) {
+
+        if (fen[i] == " ") {
+            return;
+        }
+
+        if (fen[i] == "/") {
+            y++;
+            x = 0;
+        } else {
+
+            if (fen[i] == fen[i].toUpperCase()) {
+                color = "white";
+            } else {
+                color = "black";
+            }
+            
+            if (fen[i].toLowerCase() == "r") {
+                type = "rook";
+            } else if (fen[i].toLowerCase() == "n") {
+                type = "knight";   
+            } else if (fen[i].toLowerCase() == "b") {
+                type = "bishop";   
+            } else if (fen[i].toLowerCase() == "q") {
+                type = "queen";   
+            } else if (fen[i].toLowerCase() == "k") {
+                type = "king";   
+            } else if (fen[i].toLowerCase() == "p") {
+                type = "pawn";
+            }
+
+
+            if (x > 7 || y > 7) {
+                return;
+            }
+
+            createPiece(x, y, type, color);
+            x++;
+
+        }
+
+    }
+}
+
+fillBoard(startingFen);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
